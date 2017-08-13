@@ -1,4 +1,4 @@
-package com.gauthier.feuillen.neo4j.sink
+package com.gfeuillen.neo4j.util
 
 import java.util.Properties
 

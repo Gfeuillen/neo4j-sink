@@ -1,8 +1,9 @@
-package com.gauthier.feuillen.neo4j.sink
+package com.gfeuillen.neo4j.sink
 
 import java.util.Properties
 
-import com.gauthier.feuillen.neo4j.wrapper.ScalaSinkConnector
+import com.gfeuillen.neo4j.util.ConnectorProperties
+import com.gfeuillen.neo4j.wrapper.ScalaSinkConnector
 import org.apache.kafka.common.config.ConfigDef
 import org.apache.kafka.connect.connector.Task
 

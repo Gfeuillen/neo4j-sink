@@ -1,4 +1,4 @@
-package com.gauthier.feuillen.neo4j.sink
+package com.gfeuillen.neo4j.util
 
 import org.neo4j.driver.v1.{AuthTokens, Config, Driver, GraphDatabase}
 

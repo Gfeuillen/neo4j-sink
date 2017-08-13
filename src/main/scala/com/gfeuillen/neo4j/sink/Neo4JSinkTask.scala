@@ -1,6 +1,7 @@
-package com.gauthier.feuillen.neo4j.sink
+package com.gfeuillen.neo4j.sink
 
-import com.gauthier.feuillen.neo4j.wrapper.ScalaSinkTask
+import com.gfeuillen.neo4j.util.ConnectorProperties
+import com.gfeuillen.neo4j.wrapper.ScalaSinkTask
 import org.apache.kafka.connect.sink.SinkRecord
 import org.neo4j.driver.v1.{Driver, Session}
 

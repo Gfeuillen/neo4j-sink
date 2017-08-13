@@ -1,4 +1,4 @@
-package com.gauthier.feuillen.neo4j.wrapper
+package com.gfeuillen.neo4j.wrapper
 
 import java.util
 
