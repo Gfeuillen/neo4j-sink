@@ -17,7 +17,7 @@ class Neo4JSinkConnector extends ScalaSinkConnector{
     properties ++= map
   }
 
-  override def taskConfigs(i: Int): Seq[mutable.Map[String, String]] = (1 to i).map(n => properties.clone() + ("task.number" ->  n.toString))
+  override def sTaskConfigs(i: Int): Seq[mutable.Map[String, String]] = (1 to i).map(n => properties.clone() + ("task.number" ->  n.toString))
 
   override def taskClass(): Class[_ <: Task] = classOf[Neo4JSinkTask]
 

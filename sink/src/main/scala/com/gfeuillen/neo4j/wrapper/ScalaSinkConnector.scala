@@ -15,9 +15,9 @@ trait ScalaSinkConnector extends SinkConnector{
   }
 
 
-  def taskConfigs(i:Int):Seq[mutable.Map[String,String]]
-  override def taskConfigs(i: Integer):java.util.List[java.util.Map[String,String]]={
-    taskConfigs(i.toInt).asJava
+  def sTaskConfigs(i:Int):Seq[mutable.Map[String,String]]
+  override def taskConfigs(i: Int):java.util.List[java.util.Map[String,String]]={
+    sTaskConfigs(i).map(_.asJava).asJava
   }
 
 }

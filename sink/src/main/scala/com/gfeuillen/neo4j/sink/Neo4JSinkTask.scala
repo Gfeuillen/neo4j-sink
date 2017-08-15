@@ -1,6 +1,6 @@
 package com.gfeuillen.neo4j.sink
 
-import com.gfeuillen.neo4j.util.ConnectorProperties
+import com.gfeuillen.neo4j.util.{ConnectorProperties, Neo4JConfig}
 import com.gfeuillen.neo4j.wrapper.ScalaSinkTask
 import org.apache.kafka.connect.sink.SinkRecord
 import org.neo4j.driver.v1.{Driver, Session}
@@ -21,8 +21,10 @@ class Neo4JSinkTask extends ScalaSinkTask{
     }
   }
 
-  override def put(collection: Iterable[SinkRecord]): Unit = {
-
+  override def put(records: Iterable[SinkRecord]): Unit = {
+    records.foreach(sk =>
+      println(sk.key().toString + " -- " +sk.value().toString)
+    )
   }
 
   override def stop(): Unit = {
