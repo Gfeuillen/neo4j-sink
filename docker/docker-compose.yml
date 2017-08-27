@@ -21,17 +21,17 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - zookeeper
-  # schema-registry:
-  #   image: confluent/schema-registry
-  #   hostname: schema-registry
-  #   restart: always
-  #   ports:
-  #     - "8081:8081"
-  #   environment:
-  #     - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
-  #   depends_on:
-  #     - zookeeper
-  #     - kafka
+  schema-registry:
+    image: confluent/schema-registry
+    hostname: schema-registry
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
+    depends_on:
+      - zookeeper
+      - kafka
   # kafka-connect:
   #   image: confluentinc/cp-kafka-connect
   #   hostname: kafka-connect

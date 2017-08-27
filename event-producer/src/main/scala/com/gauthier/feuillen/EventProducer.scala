@@ -4,22 +4,26 @@ import java.util.Properties
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
 
-case class Node(id:String, nodeType:String)
 
 object EventProducer {
   def main(args: Array[String]): Unit = {
 
     val props = new Properties()
     props.put("bootstrap.servers", "192.168.1.32:9092")
-    props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-    props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
+    props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer")
+    props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer")
+    props.put("schema.registry.url", "http://localhost:8081")
 
-    val producer = new KafkaProducer[String, String](props)
+    val producer = new KafkaProducer[String,Any](props)
 
-    for (i <- 0 until 100) {
-      println("here")
-      producer.send(new ProducerRecord[String, String]("nodes", Integer.toString(i), Integer.toString(i)))
-    }
+    val testNode = Node("1", "test-node")
+    val record = Schemas.nodeRecordFormat.to(testNode)
+
+
+
+
+    producer.send(new ProducerRecord[String, Any]("nodes", testNode.id,record))
+
     producer.close()
   }
 }

@@ -30,6 +30,11 @@
   </properties>
 
   <dependencies>
+  <dependency>
+      <groupId>com.sksamuel.avro4s</groupId>
+      <artifactId>avro4s-core_2.11</artifactId>
+      <version>1.8.0</version>
+  </dependency>
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-clients</artifactId>
