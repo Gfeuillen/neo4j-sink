@@ -5,73 +5,67 @@ services:
     hostname: zookeeper
     ports:
       - "2181:2181"
-  # kafka:
-  #   image: confluent/kafka:latest
-  #   hostname: kafka
-  #   ports:
-  #     - "9092:9092"
-  #   depends_on:
-  #     - zookeeper
   kafka:
     build: kafka-docker
     hostname: kafka
     ports:
-      - "9092"
+      - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.1.32
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "_schemas:1:1,quickstart-offsets:1:1"
-      KAFKA_SECURITY_INTER_BROKER_PROTOCOL: PLAINTEXT
+      KAFKA_CREATE_TOPICS: "_schemas:1:1,quickstart-offsets:1:1,nodes:1:1"
+      KAFKA_ADVERTISED_PROTOCOL_NAME: PLAINTEXT
+      KAFKA_PROTOCOL_NAME: PLAINTEXT
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - zookeeper
-  schema-registry:
-    image: confluent/schema-registry
-    hostname: schema-registry
-    restart: always
-    ports:
-      - "8081:8081"
-    environment:
-      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
-    depends_on:
-      - zookeeper
-      - kafka
-  kafka-connect:
-    image: confluentinc/cp-kafka-connect
-    hostname: kafka-connect
-    ports:
-      - "28082:28082" # REST PORT
-    environment:
-      - CONNECT_BOOTSTRAP_SERVERS=kafka:9092
-      - CONNECT_GROUP_ID=test
-      - CONNECT_REST_PORT=28082
-      - CONNECT_CONFIG_STORAGE_TOPIC=quickstart-config
-      - CONNECT_OFFSET_STORAGE_TOPIC=quickstart-offsets
-      - CONNECT_STATUS_STORAGE_TOPIC=quickstart-status
-      - CONNECT_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
-      - CONNECT_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
-      - CONNECT_INTERNAL_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
-      - CONNECT_INTERNAL_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
-      - CONNECT_REST_ADVERTISED_HOST_NAME=kafka-connect
-      - KAFKA_LOG4J_LOGGERS=kafka.controller=DEBUG
-      - CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=1
-      - CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=1
-      - CONNECT_OFFSET_STORAGE_PARTITIONS=1
-      - CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=1
-      - CONNECT_STATUS_STORAGE_PARTITIONS=1
-    depends_on:
-      - zookeeper
-      - kafka
-      - schema-registry
+  # schema-registry:
+  #   image: confluent/schema-registry
+  #   hostname: schema-registry
+  #   restart: always
+  #   ports:
+  #     - "8081:8081"
+  #   environment:
+  #     - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
+  #   depends_on:
+  #     - zookeeper
+  #     - kafka
+  # kafka-connect:
+  #   image: confluentinc/cp-kafka-connect
+  #   hostname: kafka-connect
+  #   ports:
+  #     - "28082:28082" # REST PORT
+  #   environment:
+  #     - CONNECT_BOOTSTRAP_SERVERS=kafka:9092
+  #     - CONNECT_GROUP_ID=test
+  #     - CONNECT_REST_PORT=28082
+  #     - CONNECT_CONFIG_STORAGE_TOPIC=quickstart-config
+  #     - CONNECT_OFFSET_STORAGE_TOPIC=quickstart-offsets
+  #     - CONNECT_STATUS_STORAGE_TOPIC=quickstart-status
+  #     - CONNECT_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+  #     - CONNECT_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+  #     - CONNECT_INTERNAL_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+  #     - CONNECT_INTERNAL_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+  #     - CONNECT_REST_ADVERTISED_HOST_NAME=kafka-connect
+  #     - KAFKA_LOG4J_LOGGERS=kafka.controller=DEBUG
+  #     - CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=1
+  #     - CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=1
+  #     - CONNECT_OFFSET_STORAGE_PARTITIONS=1
+  #     - CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=1
+  #     - CONNECT_STATUS_STORAGE_PARTITIONS=1
+  #   depends_on:
+  #     - zookeeper
+  #     - kafka
+  #     - schema-registry
 
-  neo4j:
-    image: neo4j
-    hostname: neo4j
-    ports:
-      - "7474:7474"
-      - "7687:7687"
-    environment:
-      - NEO4J_AUTH=none
+  # neo4j:
+  #   image: neo4j
+  #   hostname: neo4j
+  #   ports:
+  #     - "7474:7474"
+  #     - "7687:7687"
+  #   environment:
+  #     - NEO4J_AUTH=none
 
