@@ -10,7 +10,8 @@ object EventProducer {
 
     val props = new Properties()
     props.put("bootstrap.servers", "192.168.1.32:9092")
-    props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer")
+    //props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer")
+    props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer")
     props.put("schema.registry.url", "http://localhost:8081")
 

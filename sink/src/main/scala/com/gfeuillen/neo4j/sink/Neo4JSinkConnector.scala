@@ -23,7 +23,7 @@ class Neo4JSinkConnector extends ScalaSinkConnector{
 
   override def version(): String = ConnectorProperties.version
 
-  override def stop(): Unit = ()
+  override def stop(): Unit = {}
 
   override def config(): ConfigDef = {
     new ConfigDef()

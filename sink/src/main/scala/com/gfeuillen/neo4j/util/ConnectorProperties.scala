@@ -7,7 +7,12 @@ object ConnectorProperties {
   val prefix = "connector."
 
   val properties:Properties = new Properties();
-  properties.load(this.getClass().getResourceAsStream("connector.properties"));
+  properties.load(getClass.getResourceAsStream("/connector.properties"));
 
   def version:String = properties.getProperty(prefix+"version")
+
+  def main(args: Array[String]): Unit = {
+    println(ConnectorProperties.version)
+  }
+
 }

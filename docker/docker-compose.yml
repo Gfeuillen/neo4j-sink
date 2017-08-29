@@ -44,8 +44,12 @@ services:
   #     - CONNECT_CONFIG_STORAGE_TOPIC=quickstart-config
   #     - CONNECT_OFFSET_STORAGE_TOPIC=quickstart-offsets
   #     - CONNECT_STATUS_STORAGE_TOPIC=quickstart-status
-  #     - CONNECT_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
-  #     - CONNECT_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+  #     - CONNECT_KEY_CONVERTER=io.confluent.connect.avro.AvroConverter
+  #     - CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL=http://schema-registry:8081
+  #     - CONNECT_VALUE_CONVERTER=io.confluent.connect.avro.AvroConverter
+  #     - CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL=http://schema-registry:8081
+  #     # - CONNECT_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+  #     # - CONNECT_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
   #     - CONNECT_INTERNAL_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
   #     - CONNECT_INTERNAL_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
   #     - CONNECT_REST_ADVERTISED_HOST_NAME=kafka-connect
@@ -59,6 +63,8 @@ services:
   #     - zookeeper
   #     - kafka
   #     - schema-registry
+  #   volumes:
+  #     - ./connectors:/etc/kafka-connect/jars
 
   # neo4j:
   #   image: neo4j
