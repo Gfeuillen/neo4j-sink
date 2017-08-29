@@ -4,8 +4,6 @@ import com.gfeuillen.neo4j.util.{ConnectorProperties, Neo4JConfig, Schemas}
 import com.gfeuillen.neo4j.wrapper.ScalaSinkTask
 import org.apache.kafka.connect.sink.SinkRecord
 import org.neo4j.driver.v1.{Driver, Session}
-import io.confluent.connect.avro.{AvroConverter, AvroData}
-import org.apache.avro.generic.GenericRecord
 
 import scala.collection.mutable
 
@@ -27,10 +25,8 @@ class Neo4JSinkTask extends ScalaSinkTask{
     println(records.size)
     records.foreach(sk =>
       if ((sk.key() != null) && (sk.value() != null)) {
-        val avro = new AvroData(100).fromConnectData(sk.valueSchema(), sk.value())
-        val genericData = avro.asInstanceOf[GenericRecord]
+        val genericData = Schemas.valueToGenericRecord(sk)
         val node = Schemas.nodeRecordFormat.from(genericData)
-
         println(node.id)
         println(node.nodeType)
       }
