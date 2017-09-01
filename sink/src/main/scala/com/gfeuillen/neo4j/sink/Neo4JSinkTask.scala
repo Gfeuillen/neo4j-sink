@@ -1,6 +1,7 @@
 package com.gfeuillen.neo4j.sink
 
-import com.gfeuillen.neo4j.util.{ConnectorProperties, Neo4JConfig, Schemas}
+import com.gauthier.feuillen.schemas.{Node, Schemas}
+import com.gfeuillen.neo4j.util.{ConnectorProperties, Neo4JConfig}
 import com.gfeuillen.neo4j.wrapper.ScalaSinkTask
 import org.apache.kafka.connect.sink.SinkRecord
 import org.neo4j.driver.v1.{Driver, Session}
@@ -25,8 +26,7 @@ class Neo4JSinkTask extends ScalaSinkTask{
     println(records.size)
     records.foreach(sk =>
       if ((sk.key() != null) && (sk.value() != null)) {
-        val genericData = Schemas.valueToGenericRecord(sk)
-        val node = Schemas.nodeRecordFormat.from(genericData)
+        val node = Schemas.valueToClass[Node, SinkRecord](sk)
         println(node.id)
         println(node.nodeType)
       }

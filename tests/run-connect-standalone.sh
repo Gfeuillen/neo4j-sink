@@ -1,2 +1,3 @@
 cp /home/gfeuillen/my_projects/neo4j-sink/sink/target/neo4j-sink-1.0-SNAPSHOT-jar-with-dependencies.jar /home/gfeuillen/confluent-3.0.0/share/java/kafka-connect-neo4j/
+cp /home/gfeuillen/my_projects/neo4j-sink/avro-schemas/target/avro-schemas-1.0-SNAPSHOT.jar /home/gfeuillen/confluent-3.0.0/share/java/kafka-connect-neo4j/
 /home/gfeuillen/confluent-3.0.0/bin/connect-standalone /home/gfeuillen/my_projects/neo4j-sink/config/connect-standalone.properties /home/gfeuillen/my_projects/neo4j-sink/config/neo4j.properties

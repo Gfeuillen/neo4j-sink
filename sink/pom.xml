@@ -89,6 +89,14 @@
       <version>2.2.4</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.gauthier.feuillen</groupId>
+      <artifactId>avro-schemas</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../avro-schemas/target/avro-schemas-1.0-SNAPSHOT.jar</systemPath>
+    </dependency>
   </dependencies>
 
   <build>
