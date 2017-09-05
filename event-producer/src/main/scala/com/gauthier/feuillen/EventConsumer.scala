@@ -17,7 +17,7 @@ object EventConsumer {
     props.put("group.id", "group1")
     props.put("auto.offset.reset", "earliest")
     props.put("schema.registry.url", "http://localhost:8081")
-    props.put("key.deserializer", "io.confluent.kafka.serializers.KafkaAvroDeserializer")
+    props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "io.confluent.kafka.serializers.KafkaAvroDeserializer")
     val consumer = new KafkaConsumer[String, GenericRecord](props)
 

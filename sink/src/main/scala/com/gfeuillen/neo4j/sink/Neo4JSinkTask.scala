@@ -20,6 +20,8 @@ class Neo4JSinkTask extends ScalaSinkTask{
       case Some(driver:Driver) => Some(driver.session())
       case _ => None
     }
+
+    println(session)
   }
 
   override def put(records: Iterable[SinkRecord]): Unit = {
@@ -29,8 +31,22 @@ class Neo4JSinkTask extends ScalaSinkTask{
         val node = Schemas.valueToClass[Node, SinkRecord](sk)
         println(node.id)
         println(node.nodeType)
+        println(session)
+        val statement = s"MERGE (:${node.nodeType} {id:${node.id}})"
+        println(statement)
+        runStatement(statement)
       }
     )
+  }
+
+  def runStatement(statement:String):Unit={
+    session match{
+      case Some(s:Session) => {
+        val r = s.run(statement)
+        println(r)
+      }
+      case _ => println("No Session Found")
+    }
   }
 
   override def stop(): Unit = {

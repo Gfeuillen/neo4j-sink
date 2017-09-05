@@ -17,13 +17,14 @@ object EventProducer {
 
     val producer = new KafkaProducer[String,Any](props)
 
-    val testNode = Node("1", "test-node")
+    val testNode = Node("1", "test_node")
     val record = Schemas.nodeRecordFormat.to(testNode)
 
 
 
 
-    producer.send(new ProducerRecord[String, Any]("nodes", testNode.id,record))
+    producer.send(new ProducerRecord[String, Any]("nodes_3", testNode.id,record))
+
 
     producer.close()
   }
