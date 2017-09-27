@@ -6,7 +6,9 @@ import org.apache.avro.generic.GenericRecord
 import org.apache.kafka.connect.connector.ConnectRecord
 
 
-case class Node(id:String, nodeType:String)
+case class Property(key:String, value:AnyRef)
+case class Node(id:String, label:String, properties:Seq[Property])
+case class Triplet(src:Node, dst:Node, label:String, properties:Seq[Property])
 
 object Schemas {
   def valueToGenericRecord[T <: ConnectRecord[T]](record: ConnectRecord[T]): GenericRecord = {

@@ -127,17 +127,6 @@
           </includes>
         </configuration>
       </plugin>
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.0.2</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>com.gauthier.feuillen.schemas.GenerateSchemas</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 </project>
