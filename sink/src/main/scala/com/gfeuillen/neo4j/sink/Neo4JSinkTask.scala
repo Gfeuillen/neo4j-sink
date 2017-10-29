@@ -30,11 +30,11 @@ class Neo4JSinkTask extends ScalaSinkTask{
       if ((sk.key() != null) && (sk.value() != null)) {
         val node = Schemas.valueToClass[Node, SinkRecord](sk)
         println(node.id)
-        println(node.nodeType)
+        /*println(node.nodeType)
         println(session)
-        val statement = s"MERGE (:${node.nodeType} {id:${node.id}})"
+        val statement = s"MERGE (:${node.nodeType} {id:${node.id}})
         println(statement)
-        runStatement(statement)
+        runStatement(statement)*/
       }
     )
   }
